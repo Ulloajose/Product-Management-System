@@ -25,6 +25,6 @@ public class InsertProductUserCaseImpl implements InsertProductUserCase {
         String username = authenticationFacade.getAuthentication().getName();
         User user = userRepositoryPort.findByUsername(username);
         productDto = productRepositoryPort.insertProduct(productDto, user.getId());
-        publisher.publishEvent(new OnCreateProductEvent(this, productDto));
+        publisher.publishEvent(new OnCreateProductEvent(this, productDto, user.getId()));
     }
 }
