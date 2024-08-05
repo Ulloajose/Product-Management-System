@@ -50,7 +50,4 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key.pem
           chmod 600 private_key.pem
-          sshpass -p "$PRIVATE_KEY_PASSWORD" scp -o StrictHostKeyChecking=no -i private_key.pem docker-compose.yml $USERNAME@$HOST:/opt/product-management-system
-          sshpass -p "$PRIVATE_KEY_PASSWORD" scp -o StrictHostKeyChecking=no -i private_key.pem Dockerfile $USERNAME@$HOST:/opt/product-management-system
-          sshpass -p "$PRIVATE_KEY_PASSWORD" scp -o StrictHostKeyChecking=no -i private_key.pem pom.xml $USERNAME@$HOST:/opt/product-management-system
-          sshpass -p "$PRIVATE_KEY_PASSWORD" ssh -o StrictHostKeyChecking=no -i private_key.pem $USERNAME@$HOST 'cd /opt/product-management-system && docker-compose pull && docker-compose up -d'
+          sshpass -p "$PRIVATE_KEY_PASSWORD" ssh -o StrictHostKeyChecking=no -i private_key.pem $USERNAME@$HOST 'docker login -u $DOCKER_USER -p $DOCKER_PASSWORD docker.io; docker stop product-app; docker system prune -a -f; docker pull $DOCKER_REPO:latest; docker container run -d --name product-app -p 8080:8080 -t $DOCKER_REPO:latest -e; docker logout'
