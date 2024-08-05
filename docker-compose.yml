@@ -22,3 +22,4 @@ services:
       DATABASE_PASSWORD: EPQ4xbRrgA*zwd
     depends_on:
       - java_db
+    restart: always
