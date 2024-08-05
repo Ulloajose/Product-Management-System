@@ -22,6 +22,13 @@ jobs:
       - name: Build with Maven
         run: mvn clean package -DskipTests
 
+      - name: Ensure Docker is running
+        run: |
+          sudo systemctl start docker
+          sudo systemctl enable docker
+          sudo usermod -aG docker $USER
+          sudo chmod 666 /var/run/docker.sock
+
       - name: Build Docker image
         run: docker build -t papakote/product-management-system:latest .
 
@@ -33,6 +40,12 @@ jobs:
 
       - name: Push Docker image
         run: docker push papakote/product-management-system:latest
+
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Add remote host to known_hosts
+        run: ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy to server
         env:
