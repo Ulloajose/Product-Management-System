@@ -44,3 +44,25 @@ create table product_category
     constraint product_category_fk_category_id
         foreign key (category_id) references category(id)
 );
+
+
+create table system_statistic
+(
+    id                    int GENERATED ALWAYS AS IDENTITY,
+    type                  varchar(150),
+    category_id           integer,
+    value                 DECIMAL(10, 2),
+
+    created_date          timestamp,
+    last_modified_date    timestamp,
+    created_by            integer,
+    last_modified_by      integer,
+    deleted               boolean  default  false,
+    primary key (id),
+    constraint system_statistics_fk_category_id
+        foreign key (category_id) references category (id),
+    constraint system_statistics_fk_created_by
+        foreign key (created_by) references app_user (id),
+    constraint system_statistics_fk_last_modified_by
+        foreign key (last_modified_by) references  app_user(id)
+);

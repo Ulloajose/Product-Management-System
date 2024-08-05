@@ -71,11 +71,12 @@ public class JpaProductRepositoryAdapter implements ProductRepositoryPort {
     }
 
     @Override
-    public void insertProduct(ProductDto productDto, Long userId) {
+    public ProductDto insertProduct(ProductDto productDto, Long userId) {
         ProductEntity productEntity = ProductMapper.map(productDto, getCategoryEntities(productDto.getCategories()));
         productEntity.setCreatedBy(userId);
         productEntity.setCreatedDate(LocalDateTime.now());
-        productRepository.save(productEntity);
+        productEntity = productRepository.save(productEntity);
+        return ProductMapper.map(productEntity);
     }
 
     @Override

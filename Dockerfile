@@ -8,4 +8,4 @@ FROM openjdk:21-jdk
 LABEL maintainer="josemanuel.ulloavasquez@gmail.com"
 EXPOSE 8080
 COPY --from=build /app/target/*.jar app.jar
-ENTRYPOINT ["java", "-Djava.awt.headless=true", "-jar", "product-app.jar"]
+ENTRYPOINT ["java", "-Djava.awt.headless=true", "-jar", "app.jar"]

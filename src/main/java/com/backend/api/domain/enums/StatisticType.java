@@ -5,11 +5,11 @@ import lombok.Getter;
 import java.util.Arrays;
 
 @Getter
-public enum Category {
-    ELECTRONICS, CLOTHING, FOOD, HEALTH, HOME, AUTOMOTIVE, BOOKS, MUSIC, GAMES, OTHER;
+public enum StatisticType {
+    TOTAL_PRODUCTS, MOST_EXPENSIVE, CHEAPEST_PRODUCT;
 
-    public static Category get(String name) {
-        return Arrays.stream(Category.values())
+    public static StatisticType get(String name) {
+        return Arrays.stream(StatisticType.values())
                 .filter(e -> e.name().equalsIgnoreCase(name))
                 .findFirst()
                 .orElse(null);

@@ -8,7 +8,7 @@ public interface ProductRepositoryPort {
     void deleteProduct(Long productId, Long userId);
     DataTablesResponse<ProductDto> findAll(
             int pageNumber, int pageSize, String[] sort, FilterProductDto filterProductDto);
-    void insertProduct(ProductDto productDto, Long userId);
+    ProductDto insertProduct(ProductDto productDto, Long userId);
     void updateProduct(ProductDto productDto, Long userId, Long productId);
     ProductDto findProductById(Long productId);
 }
