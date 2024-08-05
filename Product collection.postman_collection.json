@@ -170,6 +170,39 @@
 			]
 		},
 		{
+			"name": "Get all Statistic",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/statistics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"statistics"
+					],
+					"query": [
+						{
+							"key": "product",
+							"value": "Lavadoras",
+							"disabled": true
+						},
+						{
+							"key": "month",
+							"value": "APRIL",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Login",
 			"event": [
 				{
